@@ -1,0 +1,31 @@
+<section class="hero is-fullheight custom-bg">
+    <div class="hero-body is-flex-direction-column is-align-items-flex-start limit-w">
+        <div class="card has-background-grey">
+            <p class="is-size-4 p-2"><strong class="has-text-white">Posts By {{username}}:</strong></p>
+        </div>
+        {{#each posts as |post|}}
+        <div class="card stretch mt-4">
+            <div class="card-content post" data-id="{{this.id}}">
+                <p class="title is-size-4 has-text-info">{{this.title}}</p>
+                <div class="level" data-id="{{this.id}}">
+                    <div class="level-left" data-id="{{this.id}}">
+                        <p class="level-item is-size-6 has-text-weight-semibold" data-id="{{this.id}}">Posted by: {{this.user.username}}</p>
+                        <p class="level-item is-size-6" data-id="{{this.id}}">//</p>
+                        <p class="level-item is-size-6 has-text-weight-semibold" data-id="{{this.id}}">{{formatDate this.createdAt}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="container" data-id="{{this.id}}">
+                    <div class="content" data-id="{{this.id}}">
+                        <span class="overflow has-text-grey" data-id="{{this.id}}">{{this.body}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="card-footer-item editBtn" data-id="{{this.id}}">Edit</a>
+                <a class="card-footer-item has-text-danger deleteBtn" data-id="{{this.id}}">Delete</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>

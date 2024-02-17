@@ -26,10 +26,10 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
-//render project page
-router.get('/post/:id', async (req, res) => {
+//render post page
+router.get('/post/:id', withAuth, async (req, res) => {
     try {
-        const project = await Project.findByPk(req.params.id, {
+        const post = await Post.findByPk(req.params.id, {
             include: [
                 {
                     model: User,
@@ -37,12 +37,13 @@ router.get('/post/:id', async (req, res) => {
                 },
                 {
                     model: Comment
+
                 }
             ]
         });
         const comments = await Comment.findAll({
             where: {
-                project_id: req.params.id
+                post_id: req.params.id
             },
             include: [
                 {
@@ -52,11 +53,13 @@ router.get('/post/:id', async (req, res) => {
             ]
         });
 
-        const renderProject = project.get({ plain: true });
+        const renderPost = post.get({ plain: true });
         const renderComments = comments.map((comment) => comment.get({ plain: true }));
 
-        res.render('project', {
-            ...renderProject,
+        console.log({ renderPost, renderComments });
+
+        res.render('post', {
+            ...renderPost,
             renderComments,
             logged_in: req.session.logged_in
         });
@@ -130,23 +133,24 @@ router.get('/new', (req, res) => {
 });
 
 //render user profile
-router.get('profile/:id', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.id, {
+        const user = await User.findByPk(req.session.user_id, {
             attributes: {
                 exclude: ['password']
             },
             include: [
                 {
-                    model: Project,
-                    attributes: ['title', 'body']
+                    model: Post,
+                    attributes: [ 'id', 'title', 'body', 'user_id' ]
                 }
             ]
         });
 
         const renderUser = user.get({ plain: true });
+        console.log(renderUser);
 
-        res.render('dashboard', {
+        res.render('profile', {
             ...renderUser,
             logged_in: req.session.logged_in
         });

@@ -1,0 +1,67 @@
+<section class="hero is-fullheight custom-bg">
+    <div class="hero-body is-flex-direction-column is-align-items-flex-start">
+        {{!-- Post --}}
+        <div class="card stretch">
+            <div class="card-content post" id="post-id" data-id="{{id}}">
+                <p class="title is-size-4">{{title}}</p>
+                <div class="level">
+                    <div class="level-left">
+                        <p class="level-item is-size-6 has-text-weight-semibold">{{user.username}}</p>
+                        <p class="level-item is-size-6">-</p>
+                        <p class="level-item is-size-6">{{formatDate createdAt long}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="container">
+                    <div class="content has-background-white">
+                        <span class="has-text-grey">{{body}}</span>
+                    </div>
+                </div>
+            </div>
+            <footer class="card-footer has-background-light" id="post-footer">
+                <a class="card-footer-item has-text-weight-semibold" id="replyBtn">Comment</a>
+            </footer>
+            <form id="comment-form">
+                <div class="card-content stretch">
+                    {{!-- TEXT AREA INPUT --}}
+                    <div class="field">
+                        <label class="label bold">Leave a Comment</label>
+                        <div class="control">
+                        <textarea class="textarea" placeholder="Write your comment here!" id="comment-body"></textarea>
+                        </div>
+                    </div>
+                    {{!-- SUBMIT/CANCEL BUTTONS --}}
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="button is-info" id="commentBtn" type="submit">
+                            Submit
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="button is-danger" id="cancelBtn">
+                            Cancel
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {{#each renderComments as |comment|}}
+        <div class="card comment mt-2 ml-4 stretch contain">
+            <div class="card-content">
+                <div class="level-left">
+                    <p class="level-item is-size-6 has-text-weight-semibold">{{this.user.username}}</p>
+                    <p class="level-item is-size-6">-</p>
+                    <p class="level-item is-size-6">{{formatDate this.createdAt long}}</p>
+                </div>
+                <hr class="m-2">
+                <div class="content"> {{this.body}}</div>
+            </div>            
+        </div>
+        {{/each}}
+
+    </div>
+</section>
+
+<script src="/js/comment.js"></script>
