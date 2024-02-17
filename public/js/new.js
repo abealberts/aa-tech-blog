@@ -1,18 +1,16 @@
 const postButton = document.querySelector('#postBtn');
 const postTitle = document.querySelector('#post-title');
 const postBody = document.querySelector('#post-body');
-const form = document.querySelector('#post-form');
 
-const updatePost = async (e) => {
+const createPost = async (e) => {
     e.preventDefault();
 
     const title = postTitle.value;
     const body = postBody.value;
-    const id = form.getAttribute('data-postId');
     
     if (postTitle.value && postBody.value) {
-        fetch(`/api/posts/${id}`, {
-            method: 'PUT',
+        fetch('/api/posts/', {
+            method: 'POST',
             body: JSON.stringify({
                 title, 
                 body
@@ -21,8 +19,8 @@ const updatePost = async (e) => {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Post successfully updated', data);
-            location.replace(`/post/${id}`);
+            // console.log('Post successfully created', data);
+            location.replace(`/post/${data.id}`);
         })
         .catch(error => {
             console.error(`Error creating post: ${error}`);
@@ -34,4 +32,4 @@ const updatePost = async (e) => {
 
 document
     .querySelector('#post-form')
-    .addEventListener('submit', updatePost);
+    .addEventListener('submit', createPost);

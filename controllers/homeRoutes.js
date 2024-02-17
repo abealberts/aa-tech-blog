@@ -69,9 +69,9 @@ router.get('/post/:id', withAuth, async (req, res) => {
 });
 
 //render post into update form
-router.get('/update/:id', async (req, res) => {
+router.get('/update/:id', withAuth, async (req, res) => {
     try {
-        const project = await Project.findByPk(req.params.id, {
+        const post = await Post.findByPk(req.params.id, {
             include: [
               {
                 model: User, 
@@ -80,10 +80,10 @@ router.get('/update/:id', async (req, res) => {
             ]
           });
 
-          const renderProject = project.get({ plain: true });
+          const renderPost = post.get({ plain: true });
 
           res.render('update', {
-            ...renderProject,
+            ...renderPost,
             logged_in: req.session.logged_in
           });
     } catch (error) {
@@ -118,15 +118,15 @@ router.get('/signup', (req, res) => {
 });
 
 //render new post page
-router.get('/new', (req, res) => {
+router.get('/new', withAuth, (req, res) => {
     try {
         if (req.session.logged_in) {
+            res.render('new', {
+                logged_in: req.session.logged_in,
+            });
+        } else {
             res.redirect('/');
-            return;
         }
-        res.render('new', {
-            logged_in: req.session.logged_in,
-          });
     } catch (error) {
         res.status(500).json(error);
     }

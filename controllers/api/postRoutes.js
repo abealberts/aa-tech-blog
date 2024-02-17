@@ -8,7 +8,7 @@ router.post('/', withAuth, async (req, res) => {
         const post = await Post.create({
             title: req.body.title,
             body: req.body.body,
-            user_id: req.body.user_id,
+            user_id: req.session.user_id,
         });
         res.status(200).json(post);
     } catch (error) {
@@ -21,7 +21,8 @@ router.put('/:id', withAuth, async (req, res) => {
     try {
         await Post.update(req.body, {
             where: {
-                id: req.params.id
+                id: req.params.id,
+                user_id: req.session.user_id,
             }
         });
         res.status(200).json({message: 'Successfully updated post!'});
@@ -36,7 +37,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         //delete associated comments
         const comment = Comment.destroy({
             where: {
-                project_id: req.params.id
+                post_id: req.params.id
             }
         });
 

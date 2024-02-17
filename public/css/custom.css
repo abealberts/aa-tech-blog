@@ -26,3 +26,7 @@
     background-color: hsl(0, 0%, 71%);
     color: white !important;
 }
+
+.block {
+    display: block !important;
+}
