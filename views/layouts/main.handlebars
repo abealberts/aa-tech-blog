@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AA's TechBlog</title>
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+  {{!-- NAVBAR --}}
+    <nav class="navbar level has-background-grey-darker p-2 pl-4 pr-4 mb-0">
+        <div class="level-left">
+            <div class="level-item">
+                <a href="/"><p class="has-text-white is-size-4"><strong>TECH</strong>BLOG</p></a>
+            </div>
+            <a href="/" class="level-item has-text-grey-lighter ml-4 p-2">CREATE POST+</a>
+            <a href="/" class="level-item has-text-grey-lighter p-2">DASHBOARD</a>
+        </div>
+        <div class="level-right">
+            {{#if logged_in}}
+            <a href="/logout" class="level-item has-text-light p-2" id="logout">LOGOUT</a>
+            {{else}}
+            <a href="/login" class="level-item has-text-light p-2">LOGIN</a>
+            <a href="/signup" class="level-item has-text-light p-2">SIGNUP</a>
+            {{/if}}
+        </div>
+    </nav>
+
+  <main>
+    {{{ body }}}
+  </main>
+
+  <footer class="footer has-background-grey-lighter">
+    <div class="container has-text-centered">
+      <p>
+        <strong>TechBlog</strong> by Abe Alberts. <a href="https://github.com/abealberts/aa-tech-blog">Checkout the GitHub repo here.</a> © 2023 TechBlog - All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
+
+</body>
+
+</html>
+
+

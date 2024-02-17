@@ -1,0 +1,37 @@
+<section class="hero is-fullheight custom-bg">
+    <div class="hero-body" style="justify-content: center">
+        <div class="card has-background-light">
+            <div class="card-content">
+                <p class="is-size-4"><strong>Welcome to TechBlog!</strong></p>
+                <p class="is-subtitle mb-4">Please Log In or Sign Up.</p>
+                {{!-- FORM --}}
+                <form class="form" id="login">
+                    {{!-- EMAIL INPUT --}}
+                    <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Enter your email address" id="email">
+                    </div>
+                    </div>
+                    {{!-- PASSWORD INPUT --}}
+                    <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control">
+                        <input class="input" type="password" placeholder="Enter your password" id="password">
+                    </div>
+                    </div>
+                    {{!-- SUBMIT BUTTON --}}
+                    <div class="field">
+                    <div class="control">
+                        <button class="button is-link" type="submit">Log In</button>
+                    </div>
+                    </div>
+                    <a href="/signup" class="mt-2">Don't have an account? Sign up here!</a>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<script src="/js/login.js"></script>

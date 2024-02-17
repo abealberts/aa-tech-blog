@@ -1,0 +1,22 @@
+<section class="hero is-fullheight custom-bg">
+    <div class="hero-body is-flex-direction-column is-align-items-flex-start limit-w">
+        <div class="card has-background-grey">
+            <p class="is-size-4 p-2 has-text-white"><strong>Recent Posts:</strong></p>
+        </div>
+        {{#each renderPosts as |post|}}
+        <div class="card stretch mt-4 post" data-id="{{this.id}}">
+            <div class="card-content">
+                <p class="title is-size-4">{{this.title}}</p>
+                <div class="level">
+                    <p class="level-left subtitle is-size-4">Posted by: {{this.user.username}}</p>
+                    <p class="level-right is-size-6">{{this.createdAt}}</p>
+                </div>
+                
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+
+<script src="/js/post.js"></script>
