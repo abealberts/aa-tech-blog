@@ -8,7 +8,7 @@ This is a Node/Express/MySQL tech blog prototype.
 
 ## Usage
 
-### [Try out my Tech Blog via this link]()
+### [Try out my Tech Blog via this link](https://aa-tech-blog.onrender.com)
 
 #### Login Page:
 ![login page](assets/techblog-sc-1.png)
